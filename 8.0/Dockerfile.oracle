@@ -122,3 +122,10 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306 33060
 CMD ["mysqld"]
+
+RUN chown -R mysql:mysql /etc/mysql
+
+RUN chgrp -R 0 /etc/mysql \
+  && chmod -R g=u /etc/mysql
+RUN chgrp -R 0 /var/lib \
+  && chmod -R g=u /var/lib
